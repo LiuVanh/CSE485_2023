@@ -1,38 +1,46 @@
 <?php
-class Student {
+class Student
+{
     public $id;
     public $name;
     public $age;
 
-public function __construct($id, $name, $age) {
-    $this->id = $id;
-    $this->name = $name;
-    $this->age = $age;
-}
+    public function __construct($id, $name, $age)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->age = $age;
+    }
 
-public function getId() {
-    return $this->id;
-}
+    public function getId()
+    {
+        return $this->id;
+    }
 
-public function setId($id) {
-    $this->id = $id;
-}
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-public function getName() {
-    return $this->name;
-}
+    public function getName()
+    {
+        return $this->name;
+    }
 
-public function setName($name) {
-    $this->name = $name;
-}
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-public function getAge() {
-    return $this->age;
-}
+    public function getAge()
+    {
+        return $this->age;
+    }
 
-public function setAge($age) {
-    $this->age = $age;
-}
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
 }
 
 
@@ -86,15 +94,19 @@ class StudentDAO {
         $this->write($data);
     }
     
-    public function delete($index) {
+    public function delete($id) {
         $data = $this->read();
-        array_splice($data, $index, 1);
+        foreach ($data as $index => $record) {
+            if ($record->getId() == $id) {
+                unset($data[$index]);
+                break;
+            }
+        }
         $this->write($data);
     }
 
-    
+    public function getAll() {
+        return $this->read();
+    }
 }
 ?>
-
-
-
