@@ -51,6 +51,36 @@ if (isset($_POST['getAll'])) {
     }
     echo "</table>";
 ?>
+<?php
+	//đọc dữ liệu từ tệp student.csv
+	$file = fopen("student.csv", "r");
+	$students = array();
+
+	while (!feof($file)) {
+		$line = fgets($file);
+		$line = trim($line);
+
+		if (!empty($line)) {
+			$data = explode(",", $line);
+			$students[] = array(
+				"name" => $data[0],
+				"age" => $data[1],
+				"email" => $data[2]
+			);
+		}
+	}
+
+	fclose($file);
+
+	// hiển thị danh sách sinh viên trên trang web
+	foreach ($students as $student) {
+		echo "<tr>";
+		echo "<td>" . $student['name'] . "</td>";
+		echo "<td>" . $student['age'] . "</td>";
+		echo "<td>" . $student['email'] . "</td>";
+		echo "</tr>";
+	}
+	?>
 
     <?php
         // Lấy giá trị ID từ form
