@@ -108,5 +108,15 @@ class StudentDAO {
     public function getAll() {
         return $this->read();
     }
+
+    public function checkID($id) {
+        $data = $this->read();
+        foreach ($data as $index => $record) {
+            if ($record->getId() == $id) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 ?>
