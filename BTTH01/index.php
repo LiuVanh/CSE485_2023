@@ -51,3 +51,22 @@ if (isset($_POST['getAll'])) {
     }
     echo "</table>";
 ?>
+
+    <?php
+        // Lấy giá trị ID từ form
+        if (isset($_POST['submit'])) {
+            $id = $_POST['id'];
+
+            // Tạo một mảng chứa các ID
+            $ids = array("id1", "id2", "id3");
+
+            // Kiểm tra xem ID đã tồn tại trong mảng hay chưa
+            if (in_array($id, $ids)) {
+                echo "ID chưa tồn tại";
+            } else {
+                echo "ID đã tồn tại";
+            }
+        }
+    ?>
+</body>
+</html>
